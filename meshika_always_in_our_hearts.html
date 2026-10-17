@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meshika — Always In Our Hearts</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        warmCream: '#FFFDF9',
+                        softGold: '#F3E5AB',
+                        roseSoft: '#FDF0ED',
+                        skyBlueSoft: '#E8F3F8',
+                        warmAmber: '#D97706',
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif'],
+                        handwriting: ['"Caveat"', 'cursive'],
+                    },
+                    animation: {
+                        'spin-slow': 'spin 16s linear infinite',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        #particle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 10px 25px -5px rgba(230, 198, 135, 0.18);
+        }
+
+        .aspect-drive {
+            position: relative;
+            width: 100%;
+            padding-bottom: 75%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 1.25rem;
+        }
+        
+        .aspect-drive iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FFFDF9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #E6C687;
+            border-radius: 999px;
+        }
+    </style>
+</head>
+<body class="bg-warmCream text-slate-700 font-sans min-h-screen relative overflow-x-hidden selection:bg-softGold">
+
+    <!-- Particle canvas background -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Top Navigation -->
+    <header class="sticky top-0 z-40 glass-card border-b border-amber-100/80 px-4 py-3">
+        <div class="max-w-6xl mx-auto flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-amber-200 via-rose-200 to-amber-300 flex items-center justify-center text-amber-700 shadow-sm">
+                    <i class="fa-solid fa-sun text-lg animate-spin-slow"></i>
+                </div>
+                <div>
+                    <h1 class="font-serif font-bold text-slate-800 text-lg leading-tight">Meshika</h1>
+                    <p class="text-xs text-amber-800 font-handwriting text-base -mt-1">Forever Our Sweet Little Angel</p>
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-3">
+                <button id="audio-btn" onclick="toggleAmbientAudio()" class="flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-amber-50 hover:bg-amber-100 text-amber-900 text-xs font-semibold border border-amber-200/80 transition-all shadow-sm">
+                    <i id="audio-icon" class="fa-solid fa-music text-amber-500"></i>
+                    <span id="audio-text" class="hidden sm:inline">Play Gentle Sound</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="relative z-10 pt-10 pb-8 px-4 text-center max-w-4xl mx-auto">
+        <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-amber-100/80 border border-amber-200 text-amber-900 text-xs font-semibold mb-6 shadow-sm">
+            <i class="fa-solid fa-sparkles text-amber-500"></i>
+            <span>Always Happy, Playful & Naughty in Our Hearts</span>
+        </div>
+
+        <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-slate-800 leading-tight tracking-tight mb-3">
+            Celebrating <span class="bg-gradient-to-r from-amber-600 via-rose-500 to-amber-500 bg-clip-text text-transparent italic font-serif">Meshika</span>
+        </h1>
+
+        <p class="max-w-2xl mx-auto text-slate-600 text-base sm:text-lg leading-relaxed mb-6">
+            A peaceful sanctuary where we can remember Meshika every day—her playful laughter, her naughty giggles, and her sweet happy smile that lights up our world forever.
+        </p>
+
+        <div class="glass-card rounded-3xl p-6 max-w-2xl mx-auto shadow-md border border-amber-100 text-left relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-1.5 h-full bg-gradient-to-b from-amber-400 to-rose-400"></div>
+            <div class="flex items-start space-x-4">
+                <div class="text-amber-400 text-3xl shrink-0 mt-1">
+                    <i class="fa-solid fa-quote-left"></i>
+                </div>
+                <div>
+                    <p class="text-slate-700 font-serif italic text-base sm:text-lg leading-snug">
+                        "There are some who bring a light so great to the world that even after they have gone, the light remains."
+                    </p>
+                    <p class="mt-2 text-xs text-amber-800 font-handwriting text-xl font-bold">— Always Loved & Remembered</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN MEDIA STREAMS FROM MESHIKA'S GOOGLE DRIVE FOLDERS -->
+    <section class="max-w-6xl mx-auto px-4 py-8 relative z-10 space-y-12">
+        
+        <!-- Folder 1 Stream -->
+        <div class="glass-card rounded-3xl p-6 border border-amber-200/80 shadow-md">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center font-bold text-xl">
+                        <i class="fa-solid fa-images"></i>
+                    </div>
+                    <div>
+                        <h2 class="font-serif font-bold text-slate-800 text-xl">Meshika's Photo & Memory Stream</h2>
+                        <p class="text-xs text-slate-500">Live Collection 1</p>
+                    </div>
+                </div>
+
+                <a href="https://drive.google.com/drive/folders/1LAsw83qJlrhF6O-V8zfwbfgfubp5aVCG?usp=sharing" target="_blank" rel="noopener noreferrer" class="self-start sm:self-center px-4 py-2 rounded-full bg-amber-100 hover:bg-amber-200 text-amber-900 text-xs font-semibold transition-colors flex items-center space-x-1.5">
+                    <i class="fa-brands fa-google-drive"></i>
+                    <span>Open Folder in Drive</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px] ml-0.5"></i>
+                </a>
+            </div>
+
+            <!-- Embedded Viewport -->
+            <div class="aspect-drive rounded-2xl bg-slate-100 shadow-inner border border-slate-200/60">
+                <iframe src="https://drive.google.com/embeddedfolderview?id=1LAsw83qJlrhF6O-V8zfwbfgfubp5aVCG#grid" allow="autoplay"></iframe>
+            </div>
+        </div>
+
+        <!-- Folder 2 Stream -->
+        <div class="glass-card rounded-3xl p-6 border border-rose-200/80 shadow-md">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-2xl bg-rose-100 text-rose-500 flex items-center justify-center font-bold text-xl">
+                        <i class="fa-solid fa-film"></i>
+                    </div>
+                    <div>
+                        <h2 class="font-serif font-bold text-slate-800 text-xl">Meshika's Playful & Naughty Video Stream</h2>
+                        <p class="text-xs text-slate-500">Live Collection 2</p>
+                    </div>
+                </div>
+
+                <a href="https://drive.google.com/drive/folders/1E2ZQ5uL-1bC4vI57ps70CRxi-xYZ0JAN?usp=sharing" target="_blank" rel="noopener noreferrer" class="self-start sm:self-center px-4 py-2 rounded-full bg-rose-100 hover:bg-rose-200 text-rose-900 text-xs font-semibold transition-colors flex items-center space-x-1.5">
+                    <i class="fa-brands fa-google-drive"></i>
+                    <span>Open Folder in Drive</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px] ml-0.5"></i>
+                </a>
+            </div>
+
+            <!-- Embedded Viewport -->
+            <div class="aspect-drive rounded-2xl bg-slate-100 shadow-inner border border-slate-200/60">
+                <iframe src="https://drive.google.com/embeddedfolderview?id=1E2ZQ5uL-1bC4vI57ps70CRxi-xYZ0JAN#grid" allow="autoplay"></iframe>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer class="relative z-10 bg-slate-900 text-slate-300 py-12 px-4 border-t border-slate-800 text-center mt-12">
+        <div class="max-w-4xl mx-auto space-y-4">
+            <div class="w-12 h-12 rounded-full bg-amber-400/20 text-amber-300 flex items-center justify-center mx-auto text-xl">
+                <i class="fa-solid fa-sun"></i>
+            </div>
+            <p class="font-serif text-2xl italic text-amber-100">"Forever Loved, Always Playful, Never Forgotten."</p>
+            <p class="text-xs text-slate-400 max-w-md mx-auto">
+                In loving memory of sweet Meshika. Built so our family can remember her happy smile and mischievous laughter every day.
+            </p>
+            <div class="pt-4 text-xs text-slate-500 border-t border-slate-800 flex items-center justify-center space-x-4">
+                <a href="https://drive.google.com/drive/folders/1LAsw83qJlrhF6O-V8zfwbfgfubp5aVCG?usp=sharing" target="_blank" class="hover:text-amber-300 transition-colors">Folder 1</a>
+                <span>•</span>
+                <a href="https://drive.google.com/drive/folders/1E2ZQ5uL-1bC4vI57ps70CRxi-xYZ0JAN?usp=sharing" target="_blank" class="hover:text-amber-300 transition-colors">Folder 2</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        /* Ambient Sound */
+        let audioContext = null;
+        let isAudioPlaying = false;
+        let audioTimer = null;
+
+        function toggleAmbientAudio() {
+            const btn = document.getElementById('audio-btn');
+            const icon = document.getElementById('audio-icon');
+            const text = document.getElementById('audio-text');
+
+            if (!isAudioPlaying) {
+                playCalmingTones();
+                isAudioPlaying = true;
+                icon.className = "fa-solid fa-pause text-rose-500";
+                text.innerText = "Pause Sound";
+                btn.classList.add("bg-rose-50", "border-rose-200");
+            } else {
+                stopCalmingTones();
+                isAudioPlaying = false;
+                icon.className = "fa-solid fa-music text-amber-500";
+                text.innerText = "Play Gentle Sound";
+                btn.classList.remove("bg-rose-50", "border-rose-200");
+            }
+        }
+
+        function playCalmingTones() {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioContext.state === 'suspended') {
+                audioContext.resume();
+            }
+
+            const notes = [261.63, 329.63, 392.00, 523.25, 659.25];
+
+            function playNote() {
+                if (!isAudioPlaying) return;
+                const osc = audioContext.createOscillator();
+                const gain = audioContext.createGain();
+
+                const freq = notes[Math.floor(Math.random() * notes.length)];
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(freq, audioContext.currentTime);
+
+                gain.gain.setValueAtTime(0, audioContext.currentTime);
+                gain.gain.linearRampToValueAtTime(0.02, audioContext.currentTime + 1.5);
+                gain.gain.exponentialRampToValueAtTime(0.0001, audioContext.currentTime + 5);
+
+                osc.connect(gain);
+                gain.connect(audioContext.destination);
+
+                osc.start();
+                osc.stop(audioContext.currentTime + 5.5);
+
+                audioTimer = setTimeout(playNote, 2200 + Math.random() * 1800);
+            }
+
+            playNote();
+        }
+
+        function stopCalmingTones() {
+            if (audioTimer) clearTimeout(audioTimer);
+        }
+
+        /* Ambient Bokeh Particles */
+        function initParticles() {
+            const canvas = document.getElementById('particle-canvas');
+            const ctx = canvas.getContext('2d');
+
+            let width = (canvas.width = window.innerWidth);
+            let height = (canvas.height = window.innerHeight);
+
+            window.addEventListener('resize', () => {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            });
+
+            const particles = Array.from({ length: 28 }, () => ({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                radius: Math.random() * 3.5 + 1.5,
+                alpha: Math.random() * 0.4 + 0.2,
+                speedY: Math.random() * 0.35 + 0.1,
+                speedX: (Math.random() - 0.5) * 0.15,
+                color: Math.random() > 0.5 ? '#F3E5AB' : '#FDF0ED'
+            }));
+
+            function animate() {
+                ctx.clearRect(0, 0, width, height);
+                particles.forEach(p => {
+                    p.y -= p.speedY;
+                    p.x += p.speedX;
+
+                    if (p.y < -10) {
+                        p.y = height + 10;
+                        p.x = Math.random() * width;
+                    }
+
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = p.color;
+                    ctx.globalAlpha = p.alpha;
+                    ctx.shadowBlur = 8;
+                    ctx.shadowColor = p.color;
+                    ctx.fill();
+                });
+                requestAnimationFrame(animate);
+            }
+            animate();
+        }
+
+        window.onload = function () {
+            initParticles();
+        };
+    </script>
+</body>
+</html>
