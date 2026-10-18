@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Meshika — Our Joyful, Naughty, & Beloved Little Star ♥</title>
+  <title>Meshika — Our Beloved Little Star ♥</title>
   <style>
     :root {
       --bg-color: #fcfcfc;
@@ -23,95 +23,62 @@
       font-family: 'Comfortaa', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       background-color: var(--bg-color);
       color: var(--text-dark);
-      overflow-x: hidden;
+      padding-bottom: 50px;
     }
 
-    /* Background Aesthetics */
-    .bg-shape { position: fixed; border-radius: 50%; z-index: -2; opacity: 0.25; pointer-events: none; }
-    .shape1 { width: 400px; height: 400px; background-color: #ffd1dc; top: 10%; right: -100px; }
-    .shape2 { width: 300px; height: 300px; background-color: #e3f2fd; bottom: 15%; left: -80px; }
-
-    /* Header */
     header {
       text-align: center;
-      padding: 50px 20px 20px;
+      padding: 40px 20px 20px;
     }
     
     header h1 {
-      font-size: 3rem;
+      font-size: 2.8rem;
       color: var(--text-dark);
       font-weight: 700;
-      margin-bottom: 5px;
     }
     
     header p.subtitle {
-      font-size: 1.2rem;
+      font-size: 1.15rem;
       color: var(--text-gold);
       font-weight: 500;
+      margin-top: 5px;
     }
 
     .heart { color: var(--accent-strong); }
 
-    /* Layout Container */
     .container {
-      max-width: 900px;
+      max-width: 1000px;
       margin: 0 auto;
-      padding: 0 15px 60px;
+      padding: 0 15px;
     }
-    
+
     .section-title {
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       color: var(--text-dark);
-      margin: 35px 0 20px;
+      margin: 30px 0 15px;
       font-weight: 600;
-      position: relative;
-      display: inline-block;
-    }
-    
-    .section-title::after {
-      content: '';
-      position: absolute;
-      bottom: -4px; left: 0;
-      width: 100%; height: 4px;
-      background-color: var(--accent-mid);
-      border-radius: 10px;
     }
 
-    /* Mobile-Optimized Video Grid */
-    .video-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 25px;
-    }
-
-    .video-card {
+    /* Drive Folder Frame */
+    .drive-container {
       background: var(--card-bg);
       border-radius: 20px;
-      overflow: hidden;
       box-shadow: 0 6px 20px rgba(0,0,0,0.06);
       border: 4px solid var(--accent-soft);
+      overflow: hidden;
+      height: 650px;
+      margin-bottom: 30px;
     }
 
-    video {
+    iframe {
       width: 100%;
-      max-height: 500px;
-      background: #000;
-      display: block;
-      border-radius: 16px 16px 0 0;
-    }
-
-    .caption-tag {
-      padding: 12px;
-      text-align: center;
-      background: #ffffff;
-      color: var(--text-gold);
-      font-size: 1rem;
-      font-weight: 600;
+      height: 100%;
+      border: none;
     }
 
     footer {
       text-align: center;
-      padding: 25px 20px;
+      padding: 20px;
       color: var(--text-muted);
       font-size: 0.95rem;
     }
@@ -121,9 +88,6 @@
 </head>
 <body>
 
-  <div class="bg-shape shape1"></div>
-  <div class="bg-shape shape2"></div>
-
   <header>
     <h1>Meshika ✦</h1>
     <p class="subtitle">Our Happy, Playful, Naughty, & Beloved Little Star <span class="heart">♥</span></p>
@@ -131,42 +95,16 @@
 
   <div class="container">
 
-    <h2 class="section-title">Meshika's Video Moments</h2>
-    <div class="video-grid">
+    <!-- All 100+ Videos Collection -->
+    <h2 class="section-title">Meshika's Video Collection (100+ Videos)</h2>
+    <div class="drive-container">
+      <iframe src="https://drive.google.com/embeddedfolderview?id=1E2ZQ5uL-1bC4vI57ps70CRxi-xYZ0JAN#grid"></iframe>
+    </div>
 
-      <div class="video-card">
-        <video controls playsinline preload="metadata">
-          <source src="IMG_9216.MOV" type="video/mp4">
-          <source src="IMG_9216.MOV" type="video/quicktime">
-          Your mobile browser does not support playing this video directly.
-        </video>
-        <div class="caption-tag">Playful Moment</div>
-      </div>
-
-      <div class="video-card">
-        <video controls playsinline preload="metadata">
-          <source src="IMG_9226.MOV" type="video/mp4">
-          <source src="IMG_9226.MOV" type="video/quicktime">
-        </video>
-        <div class="caption-tag">Sweet Smile</div>
-      </div>
-
-      <div class="video-card">
-        <video controls playsinline preload="metadata">
-          <source src="IMG_4852.MOV" type="video/mp4">
-          <source src="IMG_4852.MOV" type="video/quicktime">
-        </video>
-        <div class="caption-tag">Naughty & Joyful</div>
-      </div>
-
-      <div class="video-card">
-        <video controls playsinline preload="metadata">
-          <source src="IMG_4556.MOV" type="video/mp4">
-          <source src="IMG_4556.MOV" type="video/quicktime">
-        </video>
-        <div class="caption-tag">Precious Memory</div>
-      </div>
-
+    <!-- Photos Collection -->
+    <h2 class="section-title">Meshika's Photo Memories</h2>
+    <div class="drive-container">
+      <iframe src="https://drive.google.com/embeddedfolderview?id=1LAsw83qJlrhF6O-V8zfwbfgfubp5aVCG#grid"></iframe>
     </div>
 
   </div>
