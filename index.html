@@ -5,38 +5,309 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Meshika — Our Joyful, Naughty, & Beloved Little Star ♥</title>
   <style>
-    /* 
-      =========================================
-      Meshika's Joyous & Cute Theme (Slideshow)
-      =========================================
-    */
     :root {
-      /* Soft and Warm Pastel Colors */
       --bg-color: #fcfcfc;
       --card-bg: #ffffff;
-      
-      /* Playful Pink & Soft Gold Accents */
       --accent-soft: #ffebee;
       --accent-mid: #ffd1dc;
-      --accent-strong: #ff8a80; /* Soft coral-red for 'hearts' */
-      --soft-gold: #f4d35e; /* Joyful Gold */
-      
-      /* Friendly Text Colors */
+      --accent-strong: #ff8a80;
+      --soft-gold: #f4d35e;
       --text-dark: #373e4a;
       --text-muted: #8c9096;
       --text-gold: #c79836;
     }
 
-    /* Standard Box Model & Friendly Font */
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    
     body {
-      font-family: 'Comfortaa', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-family: 'Comfortaa', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       background-color: var(--bg-color);
       color: var(--text-dark);
-      overflow-x: hidden; /* Prevent horizontal scroll */
+      overflow-x: hidden;
     }
 
-    /* 
-      1. Global Decorative Elements (Joyous atmosphere)
-    */
-    .star { position: fixed; color: var(--soft-gold); font-size: 1.5rem; animation: starTwinkle 3s infinite; opacity: 0; z-index: -1; pointer
+    /* Background Aesthetics */
+    .bg-shape { position: fixed; border-radius: 50%; z-index: -2; opacity: 0.25; pointer-events: none; }
+    .shape1 { width: 400px; height: 400px; background-color: #ffd1dc; top: 10%; right: -100px; }
+    .shape2 { width: 300px; height: 300px; background-color: #e3f2fd; bottom: 15%; left: -80px; }
+    .shape3 { width: 200px; height: 200px; background-color: #ffe082; top: 60%; right: 20%; }
+
+    /* Header */
+    header {
+      text-align: center;
+      padding: 60px 20px 20px;
+      position: relative;
+    }
+    
+    header h1 {
+      font-size: 3.5rem;
+      color: var(--text-dark);
+      font-weight: 700;
+      letter-spacing: -1px;
+      position: relative;
+      display: inline-block;
+      margin-bottom: 5px;
+    }
+    
+    header h1 .star-accent { color: var(--soft-gold); position: absolute; top: -5px; right: -25px; font-size: 2.2rem; }
+    
+    header p.subtitle {
+      font-size: 1.25rem;
+      color: var(--text-gold);
+      font-weight: 500;
+    }
+    
+    .heart { color: var(--accent-strong); font-size: 1.3rem; }
+
+    /* Layout Container */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px 80px;
+    }
+    
+    .section-title {
+      font-size: 1.8rem;
+      color: var(--text-dark);
+      margin: 40px 0 20px;
+      font-weight: 600;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 100%; height: 4px;
+      background-color: var(--accent-mid);
+      border-radius: 10px;
+    }
+
+    /* Slideshow Box */
+    .slideshow-wrapper {
+      position: relative;
+      width: 100%;
+      height: 600px;
+      background: var(--card-bg);
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      overflow: hidden;
+      margin-bottom: 40px;
+      border: 5px solid var(--accent-soft);
+    }
+
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 1.2s ease-in-out;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: #fafafa;
+    }
+    
+    .slide.active { opacity: 1; z-index: 10; }
+
+    /* Embedded Video Frame */
+    .video-frame {
+      width: 100%;
+      height: 100%;
+      border: none;
+      background: #000;
+    }
+
+    /* Photos Framing */
+    .photo-frame {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: #ffffff;
+      padding: 15px;
+    }
+
+    .caption-tag {
+      position: absolute;
+      bottom: 15px;
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--text-gold);
+      padding: 6px 18px;
+      border-radius: 20px;
+      font-size: 1rem;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      z-index: 15;
+    }
+
+    /* Controls for Manual Navigation */
+    .nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.85);
+      color: var(--text-dark);
+      border: none;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      font-size: 1.4rem;
+      cursor: pointer;
+      z-index: 20;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      transition: background 0.2s ease;
+    }
+    .nav-btn:hover { background: #ffffff; }
+    .prev-btn { left: 15px; }
+    .next-btn { right: 15px; }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&display=swap');
+  </style>
+</head>
+<body>
+
+  <div class="bg-shape shape1"></div>
+  <div class="bg-shape shape2"></div>
+  <div class="bg-shape shape3"></div>
+
+  <header>
+    <h1>Meshika <span class="star-accent">✦</span></h1>
+    <p class="subtitle">Our Happy, Playful, Naughty, & Beloved Little Star <span class="heart">♥</span></p>
+  </header>
+
+  <div class="container">
+
+    <!-- Video Gallery Section -->
+    <h2 class="section-title">Meshika's Video Moments</h2>
+    <div class="slideshow-wrapper" id="videoSlideshow">
+      
+      <button class="nav-btn prev-btn" onclick="moveSlide('videoSlideshow', -1)">❮</button>
+      <button class="nav-btn next-btn" onclick="moveSlide('videoSlideshow', 1)">❯</button>
+
+      <!-- Video 1 -->
+      <div class="slide active">
+        <iframe class="video-frame" src="https://drive.google.com/file/d/1b80RVyFcHdLDf2d2WCr8JKFtljfM47NZ/preview" allow="autoplay"></iframe>
+        <div class="caption-tag">Playful Moment</div>
+      </div>
+
+      <!-- Video 2 -->
+      <div class="slide">
+        <iframe class="video-frame" src="https://drive.google.com/file/d/11Yu8TC0x1RDjIhQOzIh--86Z9MdU4GZR/preview" allow="autoplay"></iframe>
+        <div class="caption-tag">Sweet Smile</div>
+      </div>
+
+      <!-- Video 3 -->
+      <div class="slide">
+        <iframe class="video-frame" src="https://drive.google.com/file/d/1NrN2wJUD4L-n_JGFtFkHH2yw-VR8jB9W/preview" allow="autoplay"></iframe>
+        <div class="caption-tag">Naughty & Joyful</div>
+      </div>
+
+      <!-- Video 4 -->
+      <div class="slide">
+        <iframe class="video-frame" src="https://drive.google.com/file/d/1dSbkPgruL9Inrf9FMSCeZj1lPPOV1aLh/preview" allow="autoplay"></iframe>
+        <div class="caption-tag">Precious Memory</div>
+      </div>
+
+      <!-- Video 5 -->
+      <div class="slide">
+        <iframe class="video-frame" src="https://drive.google.com/file/d/1PTwZhYc2oHZlidxn6SXc2UO1-54D2-UF/preview" allow="autoplay"></iframe>
+        <div class="caption-tag">Happy Times</div>
+      </div>
+
+      <!-- Video 6 -->
+      <div class="slide">
+        <iframe class="video-frame" src="https://drive.google.com/file/d/1bsUSOIA6Pj-a11nU8Lw-nxU5mopJ2sXF/preview" allow="autoplay"></iframe>
+        <div class="caption-tag">Laughter & Joy</div>
+      </div>
+
+      <!-- Video 7 -->
+      <div class="slide">
+        <iframe class="video-frame" src="https://drive.google.com/file/d/17YVvh5JlMVUizgq_G8Z-thNhrJA5wPRe/preview" allow="autoplay"></iframe>
+        <div class="caption-tag">Cherished Moments</div>
+      </div>
+
+      <!-- Video 8 -->
+      <div class="slide">
+        <iframe class="video-frame" src="https://drive.google.com/file/d/1jORssKkw_eAwCt0WNSEPMYgw1M8Uu6aY/preview" allow="autoplay"></iframe>
+        <div class="caption-tag">Playful Spirit</div>
+      </div>
+
+    </div>
+
+    <!-- Photo Gallery Section -->
+    <h2 class="section-title">Precious Photos</h2>
+    <div class="slideshow-wrapper" id="photoSlideshow">
+      
+      <button class="nav-btn prev-btn" onclick="moveSlide('photoSlideshow', -1)">❮</button>
+      <button class="nav-btn next-btn" onclick="moveSlide('photoSlideshow', 1)">❯</button>
+
+      <!-- Photo 1 -->
+      <div class="slide active">
+        <iframe class="video-frame" src="https://drive.google.com/file/d/1NcU7PcDpqEx2ZTHMG1mQj8FgdCsLbX9h/preview"></iframe>
+        <div class="caption-tag">Happy Times</div>
+      </div>
+
+      <!-- Photo 2 -->
+      <div class="slide">
+        <iframe class="video-frame" src="https://drive.google.com/file/d/1ez03NhFVKfQovJVNC2pXAXG8SIRo8zqR/preview"></iframe>
+        <div class="caption-tag">Our Playful Star</div>
+      </div>
+
+      <!-- Photo 3 -->
+      <div class="slide">
+        <iframe class="video-frame" src="https://drive.google.com/file/d/1JQieByQOhedD778DY9MsZhglYfSm1QQ1/preview"></iframe>
+        <div class="caption-tag">Sweet Smile</div>
+      </div>
+
+      <!-- Photo 4 -->
+      <div class="slide">
+        <iframe class="video-frame" src="https://drive.google.com/file/d/112kAYlnP51Lu5B09b3pHuqXG70nLvLU2/preview"></iframe>
+        <div class="caption-tag">Laughter & Joy</div>
+      </div>
+
+      <!-- Photo 5 -->
+      <div class="slide">
+        <iframe class="video-frame" src="https://drive.google.com/file/d/1xsE07CHoCbPnLXNNa9KC-KHzNyOKJa2r/preview"></iframe>
+        <div class="caption-tag">Always in our Hearts</div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <footer>
+    <p>In Loving Memory of Meshika — Forever in our hearts ♥</p>
+  </footer>
+
+  <script>
+    function moveSlide(containerId, direction) {
+      const container = document.getElementById(containerId);
+      const slides = container.querySelectorAll('.slide');
+      let activeIndex = -1;
+
+      slides.forEach((slide, index) => {
+        if (slide.classList.contains('active')) {
+          activeIndex = index;
+        }
+      });
+
+      if (activeIndex !== -1) {
+        slides[activeIndex].classList.remove('active');
+        let nextIndex = (activeIndex + direction + slides.length) % slides.length;
+        slides[nextIndex].classList.add('active');
+      }
+    }
+  </script>
+
+</body>
+</html>
